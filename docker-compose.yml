@@ -1,8 +1,29 @@
 #docker build && docker run
 services:
-  mysql:
+ # mysql:
+  #  image: mysql:8.0
+   # container_name: mysql
+    #environment:
+     # MYSQL_ROOT_PASSWORD: Test@123
+      #MYSQL_DATABASE: bankappdb
+    #healthcheck:
+     # test: ["CMD","mysqladmin","ping","-h","localhost","-u","root","-pTest@123"]
+      #interval: 10s
+      #timeout: 5s
+      #retries: 3
+      #start_period: 30s
+    #ports:
+     # - "3306:3306"
+    #volumes:
+    #  - mysql-data:/var/lib/mysql
+    #networks:
+     # - bankapp-nw
+    
+    mysql:
     image: mysql:8.0
     container_name: mysql
+    # 🌟 ADD THIS COMMAND LINE: Forcefully shrinks memory footprints so it runs on 1GB RAM servers
+    command: --innodb-buffer-pool-size=64M --innodb-log-buffer-size=16M --max-connections=10
     environment:
       MYSQL_ROOT_PASSWORD: Test@123
       MYSQL_DATABASE: bankappdb
