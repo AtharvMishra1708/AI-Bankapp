@@ -1,7 +1,7 @@
 # Linting scan - Checkstyle
 # SAST scan - SpotBugs
 
-name: Code scan using
+name: Code-scan
 
 on:
     push:
