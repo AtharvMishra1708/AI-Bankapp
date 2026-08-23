@@ -1,0 +1,26 @@
+# dependency scanning using trivy FS
+
+name: Dependencies-Scan
+
+on:
+    push:
+        branches: [main]
+    workflow_call:
+
+jobs:
+    Dependency-scan:
+        runs-on: ubuntu-latest
+        steps:
+
+            - name: code checkout
+              uses: actions/checkout@v4
+
+            # No manual installation or runtime setup step needed!
+            # The official Trivy tool handles the package audit natively from the marketplace
+            - name: Audit dependencies (Scan pom.xml)
+              uses: aquasecurity/trivy-action@v0.28.0
+              with:
+                scan-type: 'fs'        # Tells Trivy to scan the project files layout
+                scan-ref: '.'          # Scans the current folder where pom.xml sits
+                severity: 'CRITICAL'   # Look for high-severity package vulnerabilities
+                exit-code: '0'         # Set to 0 for now so old base packages don't crash your test run
