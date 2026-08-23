@@ -86,7 +86,19 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+		    <plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>3.3.1</version>
+				<configuration>
+					<!-- Uses the standard Sun/Java coding style blueprint automatically -->
+					<configLocation>sun_checks.xml</configLocation>
+					<consoleOutput>true</consoleOutput>
+					<failsOnError>false</failsOnError> <!-- Prevents a stylistic warning from breaking your entire build -->
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 
 </project>
+

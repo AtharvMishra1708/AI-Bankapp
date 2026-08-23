@@ -1,1 +1,38 @@
+# Linting scan - Checkstyle
+# SAST scan - SpotBugs
+
+name: Code scan using
+
+on:
+    push:
+        branches: [main]
+    workflow_call:
+
+jobs:
+    validate:
+        runs-on: ubuntu-latest
+        strategy:
+            fail-fast: true
+            matrix:
+                java-version: ['21']
+
+        steps:
+
+            - name: checkout code
+              uses: actions/checkout@v4
+
+            - name: setup java ${{ matrix.java-version }}
+              uses: actions/setup-java@v4
+              with:
+                java-version: ${{ matrix.java-version }}
+                distribution: 'temurin'
+                cache: 'maven'
+
+            - name: run linter Checkstyle
+              run: ./mvnw checkstyle:check || echo "Linting Completed"
+
+            - name: run SAST (SpotBugs & Security scan)
+              uses: marketplace/actions/spotbugs-with-findsecbugs@v1
+              with:
+                spotbugs_target: 'src/main/java'
 
