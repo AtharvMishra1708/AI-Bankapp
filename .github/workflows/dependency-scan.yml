@@ -3,8 +3,7 @@
 name: Dependencies-Scan
 
 on:
-    push:
-        branches: [main]
+   
     workflow_call:
 
 jobs:

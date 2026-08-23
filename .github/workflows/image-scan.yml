@@ -3,8 +3,7 @@
 name: Image-Scan
 
 on:
-    push:
-        branches: [main]
+    workflow_call:
 
 jobs:
     Image-Scanning-CVEs:
