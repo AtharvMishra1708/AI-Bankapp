@@ -27,6 +27,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: Test@123
       MYSQL_DATABASE: bankappdb
+      # 🌟 ADD THIS LINE: Allows root access from any container on the docker network mesh
+      MYSQL_ROOT_HOST: '%'
     healthcheck:
       test: ["CMD","mysqladmin","ping","-h","localhost","-u","root","-pTest@123"]
       interval: 10s
