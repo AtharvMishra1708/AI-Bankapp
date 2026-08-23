@@ -41,7 +41,10 @@ jobs:
                 key: ${{ secrets.EC2_PRIVATE_KEY }}
                 envs: DOCKERHUB_USERNAME, DOCKER_TAG
                 script: |
-                    echo" Running app"
-                    echo "${{secrets.DOCKERHUB_TOKEN}}" | docker login -u $DOCKERHUB_USERNAME --password-stdin
-                    cd ~/devops
-                    docker compose up -d --build --force-recreate --pull always
+                  echo "Cleaning up disk space on EC2 server..."
+                  # Forcefully purges old, unused container layers to free up space!
+                  docker system prune -f
+                  
+                  echo "Running app"
+                  echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u $DOCKERHUB_USERNAME --password-stdin
+                  cd ~/devops && docker compose up -d --build --force-recreate --pull always

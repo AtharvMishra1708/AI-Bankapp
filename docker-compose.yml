@@ -39,8 +39,10 @@ services:
       - bankapp-nw
 
   ollama:
-    image: ollama/ollama
+    # 🌟 Uses a vastly smaller base footprint optimized for standard machine layers
+    image: ollama/ollama:latest
     container_name: ollama
+
     ports:
     - "11434:11434"
     networks:

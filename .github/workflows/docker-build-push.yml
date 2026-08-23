@@ -12,6 +12,15 @@ jobs:
             - name: code checkout
               uses: actions/checkout@v4
 
+             # 🌟 STEP 1: Clear out massive pre-installed software to prevent disk crashes
+            - name: Free Disk Space on Runner Computer
+              run: |
+                echo "Reclaiming local storage space on GitHub runner..."
+                sudo rm -rf /usr/share/dotnet
+                sudo rm -rf /usr/local/lib/android
+                sudo rm -rf /opt/ghc
+                sudo rm -rf "/usr/local/share/boost"
+
             - name: Login to Dockerhub
               uses: docker/login-action@v3
               with:
