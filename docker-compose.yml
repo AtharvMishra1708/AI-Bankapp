@@ -39,10 +39,9 @@ services:
       - bankapp-nw
 
   ollama:
-    # 🌟 Uses a vastly smaller base footprint optimized for standard machine layers
-    image: ollama/ollama:latest
+    # 🌟 Pulling version 0.1.48 bypasses the heavy multi-gigabyte CUDA layers completely!
+    image: ollama/ollama:0.1.48
     container_name: ollama
-
     ports:
     - "11434:11434"
     networks:
