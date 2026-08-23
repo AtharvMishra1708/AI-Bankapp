@@ -1,0 +1,20 @@
+#using hadolint to lint docker file
+
+name: Docker-lint
+
+on:
+    push:
+        branches: [main]
+    workflow_call:
+
+jobs:
+    Dockerfile-lintine:
+        runs-on: ubuntu-latest
+        steps:
+            - name: code checkout
+              uses: actions/checkout@v4
+
+            - name: validate dockerfile
+              uses: hadolint/hadolint-action@v3.1.0
+              with:
+                dockerfile: Dockerfile
