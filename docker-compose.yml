@@ -20,7 +20,7 @@ services:
       - bankapp-nw
 
   bankapp:
-    image: atharv1708/ai-bank-app:latest
+    image: ${DOCKERHUB_USERNAME}/ai-bank-app:${DOCKER_TAG}
     container_name: bankapp
     ports:
         - "8080:8080"
