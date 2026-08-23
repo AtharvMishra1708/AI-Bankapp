@@ -19,7 +19,7 @@ services:
     #networks:
      # - bankapp-nw
     
-    mysql:
+  mysql:
     image: mysql:8.0
     container_name: mysql
     # 🌟 ADD THIS COMMAND LINE: Forcefully shrinks memory footprints so it runs on 1GB RAM servers
