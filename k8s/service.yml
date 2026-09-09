@@ -1,0 +1,30 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: mysql-service
+  namespace: bankapp
+spec:
+  selector:
+    app: mysql
+  ports:
+    - protocol: TCP
+      port: 3306
+      targetPort: 3306
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: bankapp-service
+  namespace: bankapp
+spec:
+  type: NodePort                 # 🌟 FIXED: Moved outside the ports block, directly under spec!
+  selector:
+    app: bankapp
+  ports:
+    - protocol: TCP
+      port: 8080                 # 🏢 The internal Service lobby port
+      targetPort: 8080           # 📦 Matches your Spring Boot internal port exposure code
+      nodePort: 30080            # 🧲 Connects your app directly to the Kind tunnel we built!
+
