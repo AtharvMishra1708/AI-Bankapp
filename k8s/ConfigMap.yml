@@ -9,3 +9,6 @@ data:
   MYSQL_PORT: "3306"
   MYSQL_USER: root
   OLLAMA_URL: http://ollama:11434
+  AI_MODEL: "tinyllama"       # Tells the Java framework to stop asking for llama3!
+  OLLAMA_MODEL: "tinyllama"
+  SPRING_AI_OLLAMA_CHAT_OPTIONS_MODEL: "tinyllama"

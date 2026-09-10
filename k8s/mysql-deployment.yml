@@ -27,6 +27,12 @@ spec:
             command: ["mysqladmin", "ping", "-h", "localhost"]
           initialDelaySeconds: 15
           periodSeconds: 10
+        livenessProbe:
+          exec:
+            command: ["mysqladmin", "ping", "-h", "localhost"]
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          failureThreshold: 5  
         env:
           - name: MYSQL_DATABASE
             valueFrom:

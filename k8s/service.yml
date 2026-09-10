@@ -28,3 +28,17 @@ spec:
       targetPort: 8080           # 📦 Matches your Spring Boot internal port exposure code
       nodePort: 30080            # 🧲 Connects your app directly to the Kind tunnel we built!
 
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: ollama-service
+  namespace: bankapp
+spec:
+  selector:
+    app: ollama
+  ports:
+    - protocol: TCP
+      port: 11434
+      targetPort: 11434
